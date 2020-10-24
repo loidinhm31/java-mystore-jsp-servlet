@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Loi Dinh Oct 24, 2020
  * @version 1.0
  */
-@WebServlet(name="InformationProductController", urlPatterns={"/InformationProductController"})
+@WebServlet(name="InformationProductController", urlPatterns={"/infoproduct"})
 public class InformationProductController extends HttpServlet {
     private ListProductDAO listProductDAO;
     
@@ -46,7 +46,7 @@ public class InformationProductController extends HttpServlet {
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             
-            Product p = listProductDAO.getProduct("" + id);
+            Product p = listProductDAO.getProduct("product_id", String.valueOf(id));
             request.setAttribute("PRODUCT", p);
             
             //
@@ -55,6 +55,7 @@ public class InformationProductController extends HttpServlet {
             
         } catch (Exception e) {
             response.getWriter().println(e);
+            e.printStackTrace();
         }
     } 
 

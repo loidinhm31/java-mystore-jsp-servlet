@@ -56,8 +56,10 @@ public class AddToCartController extends HttpServlet {
                 int id = Integer.parseInt(idd);
                 
                 //
-                Product p = listProductDAO.getProduct("" + id);
+                Product p = listProductDAO.getProduct("product_id", String.valueOf(id));
+                
                 Cart c = (Cart) session.getAttribute("cart");
+                
                 
                 
                 Product newp = new Product(p.getId(),
@@ -68,7 +70,7 @@ public class AddToCartController extends HttpServlet {
                                             p.getType(),
                                             p.getBrand(),
                                             1);
-                
+             
                 c.addItem(newp);
             } else if (action != null && action.equalsIgnoreCase("delete")) {
                 int id = Integer.parseInt(idd);
@@ -81,6 +83,7 @@ public class AddToCartController extends HttpServlet {
             
         } catch (Exception e) {
             response.getWriter().println(e);
+            e.printStackTrace();
         }
     } 
 

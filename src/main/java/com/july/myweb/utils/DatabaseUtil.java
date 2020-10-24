@@ -65,13 +65,24 @@ public class DatabaseUtil {
 
         // Execute query
         queryResultSet = sqlStatement.executeQuery();
+           
             
-//            // Process result set
-//            while (myRs.next()) {
-//                String email = myRs.getString("email");
-//               
-//                
-//            }
+       return queryResultSet;
+    }
+    
+     public ResultSet queryExactDb(String table, String column, String wildCard) throws SQLException {
+        
+        
+        // Create a SQL statement and query
+        conn = dataSource.getConnection();
+        // Create a SQL statement
+        String sql = "SELECT * FROM " + table + " WHERE " + column + "=?";
+        sqlStatement = conn.prepareStatement(sql);
+        sqlStatement.setString(1, wildCard);
+
+        // Execute query
+        queryResultSet = sqlStatement.executeQuery();
+           
             
        return queryResultSet;
     }

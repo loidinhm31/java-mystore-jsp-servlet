@@ -64,8 +64,27 @@ public class ListProductDAO {
     }
     
     
-    public Product getProduct(String wildCard) {
+    public Product getProduct(String column, String wildCard) throws SQLException {
+        
+        ResultSet queryResultSet = dbUtil.queryExactDb(tableName, column, wildCard);
         Product product = null;
+        //
+         while (queryResultSet.next()) {
+            int id = queryResultSet.getInt("product_id");
+            String name = queryResultSet.getString("product_name");
+            String description = queryResultSet.getString("product_des");
+            float price = queryResultSet.getFloat("product_price");
+            String src = queryResultSet.getString("product_img_source");
+            String type = queryResultSet.getString("product_type");
+            String brand = queryResultSet.getString("product_brand");
+            
+            product = new Product(id, name, description, price, src, type, brand);
+            
+           
+        }
+        
+        //
+        dbUtil.closeConnection();
         
         return product;
     }

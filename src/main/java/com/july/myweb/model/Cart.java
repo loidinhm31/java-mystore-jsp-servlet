@@ -6,6 +6,7 @@
 
 package com.july.myweb.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,8 +16,9 @@ import java.util.List;
  */
 public class Cart {
     private List<Product> listProducts;
+   
     public Cart() {
-        
+        listProducts = new ArrayList<>();
     }
     
     /**
@@ -27,7 +29,7 @@ public class Cart {
     public void addItem(Product currItem) {
         for (Product inList : listProducts) {
             if (currItem.getId() == inList.getId()) {
-                inList.setNumber(inList.getNumber() + 1);
+                inList.setQuantity(inList.getQuantity()+ 1);
                 return;
             }
         }
@@ -58,7 +60,7 @@ public class Cart {
     public double getAmount() {
         double total = 0;
         for (Product inList : listProducts) {
-            total += inList.getPrice() * inList.getNumber();
+            total += inList.getPrice() * inList.getQuantity();
         }
         
         return Math.round(total * 100.0) / 100.0;
