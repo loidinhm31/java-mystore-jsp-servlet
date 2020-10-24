@@ -74,10 +74,9 @@ a {
 
 /* Footer */
 .footer {
-    position: relative;
-    clear: both;
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    padding: 20px;
     background: #ddd;
     margin-top: 20px;
 }
