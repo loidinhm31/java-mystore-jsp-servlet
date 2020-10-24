@@ -4,7 +4,7 @@
     Author     : Loi Dinh
 --%>
 
-        <div class="footer">
+        <div class="container-fluid footer">
             <p>FOOTER</p>
         </div>
     </body>
