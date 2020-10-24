@@ -21,12 +21,18 @@
         </div>
 
         <div class="topnav">
-            <a href="#">Home</a>
+            <a href="${pageContext.request.contextPath}">Home</a>
             <a href="#">Products</a>
             <a href="#">About Us</a>
+            <!-- Login -->
             <a href="${pageContext.request.contextPath}/login.jsp" style="float:right">Login</a>
+
+            <!-- Search -->
             <form action="${pageContext.request.contextPath}/UserSearchController">
                 <input type="text" name="key" placeholder="Search..." style="float:right">
             </form>
-
+            <!-- Cart -->
+            <a href="${pageContext.request.contextPath}/cart.jsp" style="float:right">
+                <img src="${pageContext.request.contextPath}/resources/media/shopping_cart-white-24dp.svg"/>
+            </a>
         </div>
