@@ -12,6 +12,14 @@ and open the template in the editor.
     box-sizing: border-box;
 }
 
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 body {
     font-family: Arial;
     padding: 10px;
@@ -43,8 +51,8 @@ body {
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
-    text-decoration: none;
 }
+
 
 /* Animated search input */
 .topnav input[type=text] {
@@ -91,17 +99,18 @@ body {
 }
 
 /* Product image */
-.product-img {
+.card-img {
     padding: .5em;
 }
-.product-img img {
+.card-img img {
     width: 100%;
 }
 
 
 /***/
-p.product-price {
-    color: red;
+p.card-text {
+    color: #ff0000;
+    font-weight: 600;
 }
 
 
@@ -154,6 +163,10 @@ instead of next to each other */
 @media screen and (max-width: 400px) {
     .topnav a {
         float: none;
+        width: 100%;
+    }
+    
+    .topnav input[type=text] {
         width: 100%;
     }
 }
