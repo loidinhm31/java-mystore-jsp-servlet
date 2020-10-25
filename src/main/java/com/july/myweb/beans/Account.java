@@ -10,7 +10,7 @@ package com.july.prj321x.a2.beans;
  * @author Dawn
  */
 public class Account {
-    private String user;
+    private String userId;
     private String pwd;
     private int role;
     private String name, address, phone;
@@ -20,8 +20,8 @@ public class Account {
         
     }
     
-    public Account(String user, String pwd, int role, String name, String address, String phone, int check) {
-        this.user = user;
+    public Account(String userId, String pwd, int role, String name, String address, String phone, int check) {
+        this.userId = userId;
         this.pwd = pwd;
         this.role = role;
         this.name = name;
@@ -30,12 +30,12 @@ public class Account {
         this.check = check;
     }
 
-    public String getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUserId(String user) {
+        this.userId = user;
     }
 
     public String getPwd() {
