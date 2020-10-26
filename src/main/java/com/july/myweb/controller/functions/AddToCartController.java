@@ -12,14 +12,14 @@ import com.july.myweb.model.Product;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Controller for adding product to the cart 
+ * 
  * @author Loi Dinh Oct 24, 2020
  * @version 1.0
  */
@@ -45,41 +45,44 @@ public class AddToCartController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            // Get session
             HttpSession session = request.getSession(true);
             String idd = request.getParameter("id");
             String action = request.getParameter("action");
             
             if (action != null && action.equalsIgnoreCase("add")) {
+                // Create new cart to add items
                 if (session.getAttribute("cart") == null) {
                     session.setAttribute("cart", new Cart());
                 }
                 
                 int id = Integer.parseInt(idd);
                 
-                //
-                Product p = listProductDAO.getProduct("product_id", String.valueOf(id));
+                // Get current product from session
+                Product currProduct = listProductDAO.getProduct("product_id", String.valueOf(id));
                 
-                Cart c = (Cart) session.getAttribute("cart");
+                // Get current cart if it was crea
+                Cart currCart = (Cart) session.getAttribute("cart");
                 
                 
-                
-                Product newp = new Product(p.getId(),
-                                            p.getName(),
-                                            p.getDescription(),
-                                            p.getPrice(),
-                                            p.getSrc(),
-                                            p.getType(),
-                                            p.getBrand(),
+                // Create new product object
+                Product productObj = new Product(currProduct.getId(),
+                                            currProduct.getName(),
+                                            currProduct.getDescription(),
+                                            currProduct.getPrice(),
+                                            currProduct.getSrc(),
+                                            currProduct.getType(),
+                                            currProduct.getBrand(),
                                             1);
-             
-                c.addItem(newp);
-            } else if (action != null && action.equalsIgnoreCase("delete")) {
+                // Add an item to the cart
+                currCart.addItem(productObj);
+            } else if (action != null && action.equalsIgnoreCase("delete")) {   // delete an item from the cart
                 int id = Integer.parseInt(idd);
-                Cart c = (Cart) session.getAttribute("cart");
-                c.removeItem(id);
+                Cart currCart = (Cart) session.getAttribute("cart");
+                currCart.removeItem(id);
             }
                      
-            //
+            // Redirect to the cart page
             response.sendRedirect("./jsp/cart.jsp");
             
         } catch (Exception e) {

@@ -6,8 +6,10 @@
 package com.july.myweb.beans;
 
 /**
- *
- * @author Dawn
+ * This bean to save user info 
+ * 
+ * @author Loi Dinh Oct 15, 2020
+ * @version 1.0
  */
 public class Account {
     private String userId;

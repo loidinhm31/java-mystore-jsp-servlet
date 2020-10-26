@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         try {
-            // Use it to reset session after login when using cookies 
+            // Uncomment to reset session after login when using cookies 
 //            request.getSession(true).invalidate();
 
             // Pattern Regex
