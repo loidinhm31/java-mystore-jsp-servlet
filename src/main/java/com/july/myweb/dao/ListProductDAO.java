@@ -11,6 +11,7 @@ import com.july.myweb.utils.DatabaseUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -31,7 +32,7 @@ public class ListProductDAO {
      * @return 
      * @throws java.sql.SQLException 
      */
-    public List<Product> search(String wildCard) throws SQLException{
+    public List<Product> adminSearch(String wildCard) throws SQLException {
         List<Product> listProducts = new ArrayList<>();
         ResultSet queryResultSet;
         
@@ -39,6 +40,44 @@ public class ListProductDAO {
             queryResultSet = dbUtil.queryDb(tableName);
         } else {
             queryResultSet = dbUtil.queryLikeDb(tableName, "product_name", wildCard);
+        }
+        
+        while (queryResultSet.next()) {
+            int id = queryResultSet.getInt("product_id");
+            String name = queryResultSet.getString("product_name");
+            String description = queryResultSet.getString("product_des");
+            float price = queryResultSet.getFloat("product_price");
+            String src = queryResultSet.getString("product_img_source");
+            String type = queryResultSet.getString("product_type");
+            String brand = queryResultSet.getString("product_brand");
+            
+            Product newProduct = new Product(id, name, description, price, src, type, brand);
+            
+            listProducts.add(newProduct);
+        }
+        
+        //
+        dbUtil.closeConnection();
+        
+        
+        
+        return listProducts;
+    }
+    
+    public List<Product> userSearch(String wildCard) throws SQLException {
+        List<Product> listProducts = new ArrayList<>();
+        ResultSet queryResultSet;
+        
+        if (wildCard.isEmpty()) {
+            queryResultSet = dbUtil.queryDb(tableName);
+        } else {
+            List<String> fields = new ArrayList<>();
+            fields.add("product_name");
+            fields.add("product_type");
+            fields.add("product_brand");
+            String[] wildCards = {wildCard, wildCard, wildCard};      
+            
+            queryResultSet = dbUtil.queryLikeDb(tableName, fields, Arrays.asList(wildCards));
         }
         
         while (queryResultSet.next()) {
@@ -80,7 +119,6 @@ public class ListProductDAO {
             
             product = new Product(id, name, description, price, src, type, brand);
             
-           
         }
         
         //

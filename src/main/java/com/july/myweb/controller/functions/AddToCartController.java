@@ -12,6 +12,7 @@ import com.july.myweb.model.Product;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,7 +45,7 @@ public class AddToCartController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(true);
             String idd = request.getParameter("id");
             String action = request.getParameter("action");
             
@@ -77,7 +78,7 @@ public class AddToCartController extends HttpServlet {
                 Cart c = (Cart) session.getAttribute("cart");
                 c.removeItem(id);
             }
-            
+                     
             //
             response.sendRedirect("cart.jsp");
             

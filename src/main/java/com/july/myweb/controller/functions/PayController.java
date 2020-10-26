@@ -9,8 +9,8 @@ package com.july.myweb.controller.functions;
 import com.july.myweb.dao.OrdersDAO;
 import com.july.myweb.model.Cart;
 import com.july.myweb.model.Orders;
+import com.july.myweb.beans.Account;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,25 +40,32 @@ public class PayController extends HttpServlet {
             HttpSession session = request.getSession();
             
             if (session.getAttribute("cart") == null) {
-                /////////////////////////
+                // Create an error here to avoid manipulating data source
+                
                 return;
-            } 
+            }
+            
+            Account account = (Account) session.getAttribute("user");
+
             
             OrdersDAO ordersDAO = new OrdersDAO();
             Cart c = (Cart) session.getAttribute("cart");
-            String username = request.getParameter("name");
-            String discount = request.getParameter("discount");
-            String address = request.getParameter("address");
             
+            String username = account.getUserId();
+            String discount = request.getParameter("discount");
+            String address = account.getAddress();
             // Check field in db ?????????????
             Orders d = new Orders(username, discount, address);
             
             ordersDAO.insertOrder(d, c);
             
-            response.sendRedirect("./home.jsp");
+            // Set Cart to null
+            session.setAttribute("cart", null);
             
+            // Redirect to homepage
+            response.sendRedirect("./home.jsp");
         } catch (Exception e) {
-            response.getWriter().println(e);
+            response.getWriter().println(e.getMessage());
             e.printStackTrace();
         }
     } 

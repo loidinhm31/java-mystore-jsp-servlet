@@ -14,13 +14,13 @@ package com.july.myweb.model;
 public class ProductOrders {
     private int orderId;
     private int productId;
-    private int amountProduct;
+    private int quantityProduct;
     private String nameProduct;
 
-    public ProductOrders(int orderId, int productId, int amountProduct, String nameProduct) {
+    public ProductOrders(int orderId, int productId, int quantityProduct, String nameProduct) {
         this.orderId = orderId;
         this.productId = productId;
-        this.amountProduct = amountProduct;
+        this.quantityProduct = quantityProduct;
         this.nameProduct = nameProduct;
     }
 
@@ -40,12 +40,12 @@ public class ProductOrders {
         this.productId = productId;
     }
 
-    public int getAmountProduct() {
-        return amountProduct;
+    public int getQuantityProduct() {
+        return quantityProduct;
     }
 
-    public void setAmountProduct(int amountProduct) {
-        this.amountProduct = amountProduct;
+    public void setQuantityProduct(int quantityProduct) {
+        this.quantityProduct = quantityProduct;
     }
 
     public String getNameProduct() {

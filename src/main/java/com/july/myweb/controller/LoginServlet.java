@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.july.prj321x.a2.controller;
+package com.july.myweb.controller;
 
-import com.july.prj321x.a2.beans.Account;
+import com.july.myweb.dao.AccountDAO;
+import com.july.myweb.beans.Account;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +24,7 @@ import javax.servlet.http.HttpSession;
  * @author Loi Dinh Oct 15, 2020
  * @version 1.0 
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
 
     /**
@@ -37,10 +39,11 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        
         try {
-            // ?????????????????????????????????
-            request.getSession(true).invalidate();
+            // Use it to reset session after login when using cookies 
+//            request.getSession(true).invalidate();
+
             // Pattern Regex
             String emailPattern = "^[A-Z0-9_a-z]+@[A-z0-9\\.a-z]+\\.[A-Za-z]{2,6}$";
             String pwdPattern = "[a-zA-Z0-9_!@#$%^&*]+";
@@ -49,40 +52,52 @@ public class LoginServlet extends HttpServlet {
             String userID = request.getParameter("username");
             String password = request.getParameter("password");
             
-            // ????????????????????????????
-            Account loginAccount = new Account();
-            loginAccount.setUser(userID);
-            loginAccount.setPwd(password);
-            
-            
-            // ??????????????????????????????
+            // Set "error" atrribute to session scope
             HttpSession session = request.getSession(true);
             if (!userID.matches(emailPattern) || !password.matches(pwdPattern)) {
                 session.setAttribute("error", "invalid syntax");
                 response.sendRedirect("login.jsp");
-               
+                
             } else {
-                // Read information of account in web.xml
-                String uid = getServletContext().getInitParameter("username");
-                String pwd = getServletContext().getInitParameter("password");
+                // Read information of account from database
+                AccountDAO accountDAO = new AccountDAO();
+                // Create list of fields to query
+                List<String> fields = new ArrayList<>();
+                fields.add("user_mail");
+                fields.add("password");
+                // Create list of wild cards from user input
+                List<String> wildCards = new ArrayList<>();
+                wildCards.add(userID);
+                wildCards.add(password);
+                
+                Account loginAccount = accountDAO.getAccount(fields, wildCards);
+                
+                
                 // Check account
-                if (loginAccount.getUser().equalsIgnoreCase(uid) &&
-                    loginAccount.getPwd().equals(pwd)) {
-                    // Set session
-                    session.setAttribute("userID", userID);
-                    // Login is valid, redirect to index page of admin
-                    response.sendRedirect("admin/index.jsp");
-                    
+                if (loginAccount != null) {
+                    if (loginAccount.getRole() == 1102) {       // admin's role here
+                        // Set session
+                        session.setAttribute("user", loginAccount);
+                        // Login is valid, redirect to index page of admin
+                        response.sendRedirect("./admin/index.jsp");
+                    } else {
+                        // Set session
+                        session.setAttribute("user", loginAccount);
+                        // Login is valid, redirect to index page of admin
+                        response.sendRedirect("./home.jsp");
+                    }
+                        
                 } else {
                    session.setAttribute("error", "wrong username or password");
-                   response.sendRedirect("login.jsp");
+                   response.sendRedirect("./login.jsp");
                 }
             }
         } catch (NullPointerException e) {
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);
-        } catch (IOException e) {
-            out.println(e);
+           
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

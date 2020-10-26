@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.july.prj321x.a2.beans;
+package com.july.myweb.beans;
 
 /**
  *
@@ -20,14 +20,13 @@ public class Account {
         
     }
     
-    public Account(String userId, String pwd, int role, String name, String address, String phone, int check) {
+    public Account(String userId, String pwd, int role, String name, String address, String phone) {
         this.userId = userId;
         this.pwd = pwd;
         this.role = role;
         this.name = name;
         this.address = address;
         this.phone = phone;
-        this.check = check;
     }
 
     public String getUserId() {
