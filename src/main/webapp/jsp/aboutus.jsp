@@ -1,6 +1,6 @@
 <%-- 
     Document   : aboutus
-    Created on : Oct 26, 2020, 2:47:28 PM
+    Created on : Oct 26, 2020
     Author     : Loi Dinh
 --%>
 
@@ -21,7 +21,7 @@
             <a href="https://github.com/loidinhm31/myweb-servlet-jsp">GitHub</a> 
     </div>
     <div class="card-box row mx-5">
-            <a href="https://github.com/loidinhm31/myweb-servlet-jsp">Linked</a> 
+            <a href="https://www.linkedin.com/in/loi-dinh-b88906191/">Linked</a> 
     </div>
 </div>
 
