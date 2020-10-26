@@ -28,7 +28,7 @@
             <tbody>
                 <c:forEach var="product" items="${items}">
                 <tr>
-                    <th scope="row">${items.indexOf(product)+1}</th>
+                    <th scope="row">${items.indexOf(product) + 1}</th>
                     <td>
                         <div class="row">
                             <div class="col-2">
@@ -91,7 +91,7 @@
                             </form>    
                         </c:when>
                         <c:otherwise>
-                        <a href="${pageContext.request.contextPath}/home.jsp"><button class="btn btn-lg btn-primary btn-block my-2">
+                        <a href="${pageContext.request.contextPath}"><button class="btn btn-lg btn-primary btn-block my-2">
                         Keep Shopping
                         </button></a>   
                         </c:otherwise>
@@ -99,7 +99,7 @@
                     
                 </c:when>
                 <c:otherwise>
-                    <a href="${pageContext.request.contextPath}/login.jsp"><button class="btn btn-lg btn-primary btn-block my-2">
+                    <a href="${pageContext.request.contextPath}/jsp/login.jsp"><button class="btn btn-lg btn-primary btn-block my-2">
                         Checkout
                     </button></a> 
                 </c:otherwise>    
@@ -114,4 +114,4 @@
 
             
             
-<c:import url="footer.jsp"/>
+<c:import url="/jsp/footer.jsp"/>

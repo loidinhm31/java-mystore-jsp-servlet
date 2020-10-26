@@ -13,7 +13,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <c:import url="list.jsp"/>
+        <c:import url="/jsp/list.jsp"/>
         
     </div>
     <c:if test="${empty PRODUCTS}">
@@ -40,4 +40,4 @@
         </div>
     </c:if>
 </div>
-<c:import url="footer.jsp"/>
+<c:import url="/jsp/footer.jsp"/>

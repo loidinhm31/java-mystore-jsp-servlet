@@ -26,7 +26,7 @@
                         <p>You have: ${cart.getItems().size()} product(s) in your cart</p>
                         <p class="card-title">Total amount: ${cart.getAmount()}</p>
                     </div>
-                    <a class="btn btn-primary mx-auto" href="${pageContext.request.contextPath}/cart.jsp">Go to your Cart</a>
+                    <a class="btn btn-primary mx-auto" href="${pageContext.request.contextPath}/jsp/cart.jsp">Go to your Cart</a>
                 </div>
 
             </div>

@@ -64,7 +64,7 @@
                     <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 <!-- Cart -->
-                <a class="my-2 my-lg-0 nav-link" href="${pageContext.request.contextPath}/cart.jsp">
+                <a class="my-2 my-lg-0 nav-link" href="${pageContext.request.contextPath}/jsp/cart.jsp">
                     <img src="${pageContext.request.contextPath}/resources/media/shopping_cart-white-24dp.svg">
                     <!-- Display quantity of products in the cart -->
                     <span class="badge badge-light">${cart.getItems().size()}</span>
