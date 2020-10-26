@@ -11,17 +11,4 @@
     <welcome-file-list>
         <welcome-file>/home.jsp</welcome-file>
     </welcome-file-list>
-    <!-- Set params -->
-    <context-param>
-        <param-name>username</param-name>
-        <param-value>someone@gmail.com</param-value>
-    </context-param>
-    <context-param>
-        <param-name>password</param-name>
-        <param-value>somepassword</param-value>
-    </context-param>
-    <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
 </web-app>
