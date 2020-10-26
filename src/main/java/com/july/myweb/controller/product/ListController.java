@@ -51,7 +51,7 @@ public class ListController extends HttpServlet {
             request.setAttribute("PRODUCTS", listProducts);
             
             //
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./list.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./jsp/list.jsp");
             
             dispatcher.forward(request, response);
         } catch (Exception e) {

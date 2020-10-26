@@ -63,7 +63,7 @@ public class PayController extends HttpServlet {
             session.setAttribute("cart", null);
             
             // Redirect to homepage
-            response.sendRedirect("./home.jsp");
+            response.sendRedirect("./jsp/home.jsp");
         } catch (Exception e) {
             response.getWriter().println(e.getMessage());
             e.printStackTrace();

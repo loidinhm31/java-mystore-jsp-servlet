@@ -54,7 +54,7 @@ public class UserSearchController extends HttpServlet {
             
             
             //
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./search.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./jsp/search.jsp");
             
             dispatcher.forward(request, response);
         } catch (Exception e) {

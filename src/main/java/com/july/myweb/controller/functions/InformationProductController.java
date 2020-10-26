@@ -50,7 +50,7 @@ public class InformationProductController extends HttpServlet {
             request.setAttribute("PRODUCT", p);
             
             //
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./infoproduct.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./jsp/infoproduct.jsp");
             dispatcher.forward(request, response);
             
         } catch (Exception e) {

@@ -80,7 +80,7 @@ public class AddToCartController extends HttpServlet {
             }
                      
             //
-            response.sendRedirect("cart.jsp");
+            response.sendRedirect("./jsp/cart.jsp");
             
         } catch (Exception e) {
             response.getWriter().println(e);

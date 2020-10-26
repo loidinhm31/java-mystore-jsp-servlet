@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession(true);
             if (!userID.matches(emailPattern) || !password.matches(pwdPattern)) {
                 session.setAttribute("error", "invalid syntax");
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("./jsp/login.jsp");
                 
             } else {
                 // Read information of account from database
@@ -84,16 +84,16 @@ public class LoginServlet extends HttpServlet {
                         // Set session
                         session.setAttribute("user", loginAccount);
                         // Login is valid, redirect to index page of admin
-                        response.sendRedirect("./home.jsp");
+                        response.sendRedirect("./jsp/home.jsp");
                     }
                         
                 } else {
                    session.setAttribute("error", "wrong username or password");
-                   response.sendRedirect("./login.jsp");
+                   response.sendRedirect("./jsp/login.jsp");
                 }
             }
         } catch (NullPointerException e) {
-            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("./jsp/login.jsp");
             rd.forward(request, response);
            
         } catch (Exception e) {
