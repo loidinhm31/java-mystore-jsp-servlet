@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -70,8 +72,7 @@ public class DatabaseUtil {
        return queryResultSet;
     }
     
-     public ResultSet queryExactDb(String table, String column, String wildCard) throws SQLException {
-        
+    public ResultSet queryExactDb(String table, String column, String wildCard) throws SQLException {
         
         // Create a SQL statement and query
         conn = dataSource.getConnection();
@@ -79,6 +80,36 @@ public class DatabaseUtil {
         String sql = "SELECT * FROM " + table + " WHERE " + column + "=?";
         sqlStatement = conn.prepareStatement(sql);
         sqlStatement.setString(1, wildCard);
+
+        // Execute query
+        queryResultSet = sqlStatement.executeQuery();
+           
+            
+       return queryResultSet;
+    }
+    
+    public ResultSet queryExactDb(String table, List<String> columns, List<String> wildCards) throws SQLException {
+        
+        // Create a SQL statement and query
+        conn = dataSource.getConnection();
+        // Create a SQL statement
+        String sql = "SELECT * FROM " + table + " WHERE ";
+        
+        // Extend for multi fields
+        for (int i = 1; i <= columns.size(); i++) {
+            if (i == columns.size()) {
+                sql += columns.get(i-1) + "=?";
+            } else {
+                sql += columns.get(i-1) + "=? AND ";
+            }
+        }
+        
+        // Set wild card
+        sqlStatement = conn.prepareStatement(sql);
+        for (int i = 1; i <= wildCards.size(); i++) {
+            sqlStatement.setString(i, wildCards.get(i-1));
+        }
+        
 
         // Execute query
         queryResultSet = sqlStatement.executeQuery();
@@ -105,8 +136,82 @@ public class DatabaseUtil {
        return queryResultSet;
     }
     
-    public void closeConnection() {
+    public ResultSet queryLikeDb(String table, List<String> columns, List<String> wildCards) throws SQLException {
+        
+        
+        // Create a SQL statement and query
+        conn = dataSource.getConnection();
+        // Create a SQL statement
+        String sql = "SELECT * FROM " + table + " WHERE ";
+        
+        // Extend for multi fields
+        for (int i = 1; i <= columns.size(); i++) {
+            if (i == columns.size()) {
+                sql += columns.get(i-1) + " LIKE?";
+            } else {
+                sql += columns.get(i-1) + " LIKE? OR ";
+            }
+        }
+        
+        // Set wild card
+        sqlStatement = conn.prepareStatement(sql);
+        for (int i = 1; i <= wildCards.size(); i++) {
+            sqlStatement.setString(i, "%" + wildCards.get(i-1) + "%");
+        }
+        
 
+        // Execute query
+        queryResultSet = sqlStatement.executeQuery();
+            
+            
+       return queryResultSet;
+    }
+    
+    
+    public long insertDb(String table, List<String> columns, List<String> values) throws SQLException{
+        conn = dataSource.getConnection();
+        String sql = "INSERT INTO " + table + " ("  ;
+        
+        for (int i = 1; i <= columns.size(); i++) {
+            if (i == columns.size()) {
+                sql += columns.get(i-1) + ") ";
+            } else {
+                sql += columns.get(i-1) + ", ";
+            }
+        }
+        
+        sql += " VALUES (";
+        
+        for (int i = 1; i <= values.size(); i++) {
+            if (i == values.size()) {
+                sql += "?" + ") ";
+            } else {
+                sql += "?" + ", ";
+            }
+        }
+        
+        sqlStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        
+        for (int i = 1; i <= values.size(); i++) {
+            sqlStatement.setString(i, values.get(i-1));           
+        }
+        
+        sqlStatement.executeUpdate();
+        
+        
+        // Get the ID was created
+        long id = -1L;
+        queryResultSet = sqlStatement.getGeneratedKeys();
+        if (queryResultSet.next()) {
+            id = queryResultSet.getLong(1);
+        }
+        
+        return id;
+    }
+    
+
+    public void closeConnection() {
+            
         try {
                 if (queryResultSet != null) {
                         queryResultSet.close();
