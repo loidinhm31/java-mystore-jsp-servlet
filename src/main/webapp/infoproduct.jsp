@@ -22,18 +22,18 @@
     </div>
     <div class="row mx-auto my-5">
         <div class="col-sm-5">
-            <img src="${product.src}">
+            <div class="card-body">
+                <img class="card-img" src="${product.src}">
+            </div>
         </div>
         <div class="col-sm-4 mx-auto card-body">
-            <h2>${product.price}</h2>
+            <h2>Price: ${product.price}</h2>
             <p>${product.description}</p>
-            <a href="${infocart}" class="btn btn-warning stretched-link">Add to cart</a>
+            <a href="${infocart}" class="btn btn-warning">Add to cart</a>
         </div>
         
     </div>
-    
-    
-    
+
 </div>
 
 

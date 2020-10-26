@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
        
 <c:import url="header.jsp">
-    <c:param name="title" value="My Web Shop"/>
+    <c:param name="title" value="My Web Shop - Shopping Cart"/>
 </c:import> 
 
 
@@ -30,12 +30,17 @@
                 <tr>
                     <th scope="row">${items.indexOf(product)+1}</th>
                     <td>
-                        <div class="name">
-                            <p>${product.name}</p>
+                        <div class="row">
+                            <div class="col-2">
+                                <img class="card-img" src="${product.src}">
+                            </div>
+                            <div class="col-5">
+                                <p>${product.name}</p>
+                                <p>ID: ${product.id}</p>
+                            </div>
+                            
                         </div>
-                        <div class="id">
-                            <p>ID: ${product.id}</p>
-                        </div>
+                        
                     </td>
                     <td>${product.price}</td>
                     <td>${product.quantity}</td>
@@ -52,22 +57,56 @@
     </div>
         
     <div class="row mx-5 my-3">
-        <table class="table table-stripped w-auto">
-            <tbody>
-                <tr>
-                    <td>Customer name</td>
-                    <td>A</td>
-                </tr>
-                <tr>
-                    <td>Customer address</td>
-                    <td>B</td>
-                </tr>
-                <tr>
-                    <td>DISCOUNT CODE(if any)</td>
-                    <td>C</td>
-                </tr>
-            </tbody>
-        </table>        
+        <div class="col-5">
+            <table class="table table-stripped w-auto">
+                <tbody>
+                    <tr>
+                        <td>Customer name</td>
+                        <td>${user.name}</td>
+                    </tr>
+                    <tr>
+                        <td>Customer address</td>
+                        <td>${user.address}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+                    
+        <div class="col-3">
+            <c:choose>
+                <%-- Check user login --%>
+                <c:when test="${not empty user}">
+                    
+                     
+                    <%-- Check EMPTY cart --%>   
+                    <c:choose>
+                        <c:when test="${not empty cart}">
+                            <form action="${pageContext.request.contextPath}/PayController">
+                                <label for="discount">DISCOUNT CODE (if any)</label>
+                                <input type="text" name="discount">
+                                <button data-purpose="shopping-cart-checkout" 
+                                    type="submit" class="btn btn-lg btn-primary btn-block my-2">
+                                Checkout
+                                </button>
+                            </form>    
+                        </c:when>
+                        <c:otherwise>
+                        <a href="${pageContext.request.contextPath}/home.jsp"><button class="btn btn-lg btn-primary btn-block my-2">
+                        Keep Shopping
+                        </button></a>   
+                        </c:otherwise>
+                    </c:choose>
+                    
+                </c:when>
+                <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/login.jsp"><button class="btn btn-lg btn-primary btn-block my-2">
+                        Checkout
+                    </button></a> 
+                </c:otherwise>    
+            </c:choose>   
+        </div>
+                
+             
     </div>             
 </div>        
 

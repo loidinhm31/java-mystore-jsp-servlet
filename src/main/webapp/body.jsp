@@ -6,28 +6,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row my-2">
         <!-- Item Section -->
         <div class="leftcolumn col-sm-8">
             <div class="row">
-                <c:import url="/list"/>
+                <c:import url="/ListController"/>
             </div>
         </div>
        
         <!-- Cart And Popular Banner -->        
         <div class="rightcolumn col-sm-4">
-            <div class="card container shadow">
+            <div class="card shadow">
                 <div class="card-body row">
-                    <div class="col-sm-4">
-                        <h2 class="card-title">Shopping cart</h2>
-                    <img  src="${pageContext.request.contextPath}/resources/media/shopping_cart-black-48dp.svg">
+                    <div class="col-sm-5">
+                        <h6>Shopping cart</h6>
+                        <img src="${pageContext.request.contextPath}/resources/media/shopping_cart-black-48dp.svg">
                     </div>
-                    
-                    <div class="col-sm-8">
+                    <div class="col-sm-6">
                         <p>You have: ${cart.getItems().size()} product(s) in your cart</p>
                         <p class="card-title">Total amount: ${cart.getAmount()}</p>
-                        <a class="btn btn-primary stretched-link" href="${pageContext.request.contextPath}/cart.jsp">Go to your Cart</a>
                     </div>
+                    <a class="btn btn-primary mx-auto" href="${pageContext.request.contextPath}/cart.jsp">Go to your Cart</a>
                 </div>
 
             </div>
