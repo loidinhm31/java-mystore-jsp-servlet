@@ -47,7 +47,7 @@ public class UserSearchController extends HttpServlet {
             String key = request.getParameter("key");
             
            
-            List<Product> listProducts = listProductDAO.search(key);
+            List<Product> listProducts = listProductDAO.userSearch(key);
             
             //
             request.setAttribute("PRODUCTS", listProducts);

@@ -48,12 +48,15 @@ public class SearchController extends HttpServlet {
             String productName = request.getParameter("search");
             
         
-            List<Product> listProducts = listProductDAO.search(productName);
+            List<Product> listProducts = listProductDAO.adminSearch(productName);
+            
             //
             request.setAttribute("PRODUCTS", listProducts);
             
+            
+            
             //
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./list.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./admin/index.jsp");
             
             dispatcher.forward(request, response);
         } catch (Exception e) {
