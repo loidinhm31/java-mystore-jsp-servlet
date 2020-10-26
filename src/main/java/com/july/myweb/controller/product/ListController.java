@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Loi Dinh Oct 24, 2020
  * @version 1.0
  */
-@WebServlet(name="ListController", urlPatterns={"/list"})
+@WebServlet(name="ListController", urlPatterns={"/ListController"})
 public class ListController extends HttpServlet {
     private ListProductDAO listProductDAO;
     
@@ -46,7 +46,7 @@ public class ListController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            List<Product> listProducts = listProductDAO.search("");
+            List<Product> listProducts = listProductDAO.userSearch("");
             //
             request.setAttribute("PRODUCTS", listProducts);
             
