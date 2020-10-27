@@ -10,12 +10,15 @@
 <%-- Get list of products --%>
 <c:set var="productList" value="${PRODUCTS}"/>   
 
+
+
 <%-- Check EMPTY LIST --%>
 <c:choose>
+    
     <c:when test="${empty productList}">
         <div class="card shadow mx-auto my-5">
             <div class="card-body">
-                <h3 class="text-center">SORRY! No results were found matching the keyword: "${param.key}${param.search}" </h3> 
+                <h3 class="text-center">SORRY! No results were found matching the keyword: "${param.search}" </h3> 
             </div>
         </div>
     </c:when>

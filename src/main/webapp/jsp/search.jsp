@@ -7,13 +7,19 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%-- Save data from search form --%>
+<c:set var="searchKey" value="${param.key}"/>
+
+
 <c:import url="header.jsp">
     <c:param name="title" value="Search Results"/>
 </c:import>
 
 <div class="container-fluid">
     <div class="row">
-        <c:import url="/jsp/list.jsp"/>
+        <c:import url="/jsp/list.jsp">
+            <c:param name="search" value="${searchKey}"/>
+        </c:import>
         
     </div>
     <c:if test="${empty PRODUCTS}">
