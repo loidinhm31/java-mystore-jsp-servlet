@@ -5,9 +5,12 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%-- Header Section --%>
 <c:import url="/jsp/header.jsp">
     <c:param name="title" value="My Web Shop"/>
-</c:import>  
+</c:import>
+
+<!-- Body Section -->
 <div class="container-fluid my-5">
     <div class="row ">
         <div class="mx-auto my-5">
@@ -50,4 +53,6 @@
         </div>
     </div>
 </div>
+
+<%-- Footer Section --%>
 <c:import url="/jsp/footer.jsp"/>

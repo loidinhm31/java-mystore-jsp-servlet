@@ -18,7 +18,7 @@
     <c:when test="${empty productList}">
         <div class="card shadow mx-auto my-5">
             <div class="card-body">
-                <h3 class="text-center">SORRY! No results were found matching the keyword: "${param.search}" </h3> 
+                <h3 class="text-center">SORRY! No results were found matching the keyword: "<c:out value="${param.search}"/>" </h3> 
             </div>
         </div>
     </c:when>
@@ -32,12 +32,12 @@
             <div class="card col-md-4 shadow">
                 <a class="text-decoration-none stretched-link item" href="${infoproduct}">
                     <div class="card-body">
-                            <%-- Format price --%>
+                        <%-- Format price --%>
                         <fmt:formatNumber currencySymbol="$" value="${product.price}" 
                                           type="currency" var="price"/>
                         <p class="text-muted"><c:out value="${product.type}"/></p>
-                        <h5 class="cart-title text-info">${product.name}</h5>
-                        <p class="card-text text-danger font-weight-bold">${price}</p>
+                        <h5 class="cart-title text-info"><c:out value="${product.name}"/></h5>
+                        <p class="card-text text-danger font-weight-bold"><c:out value="${price}"/></p>
                     </div>
                     <div class="my-3">
                         <img class="card-img" src="${product.src}">

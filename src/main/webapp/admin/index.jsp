@@ -20,7 +20,7 @@
         <div class="container-fluid">
             <div class="row mx-1 my-2 ">
                 <div class="card shadow">
-                    <h5 class=" card-body card-title">Hello, ${user.name} </h5>
+                    <h5 class=" card-body card-title">Hello, <c:out value="${user.name}"/> </h5>
                 </div>
                 
             </div>
@@ -70,7 +70,7 @@
                       
                     </div>
                     <div class="row mx-2 my-2">
-                        <c:import url="../list.jsp"/>
+                        <c:import url="../jsp/list.jsp"/>
                         
                     </div>        
                 </main>

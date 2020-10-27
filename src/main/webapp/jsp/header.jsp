@@ -58,16 +58,17 @@
                 </ul>
 
 
-                <!-- Search -->         
+                <!-- Search -->
                 <form class="form-inline my-2 my-lg-0" action="${pageContext.request.contextPath}/UserSearchController">
-                    <input class="form-control mr-sm-2" name="key" type="search" placeholder="Search" aria-label="Search">
+                    <%-- EL here to see what key searched --%>
+                    <input class="form-control mr-sm-2" name="key" type="search" placeholder="Search" aria-label="Search" value="${param.key}"> 
                     <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 <!-- Cart -->
                 <a class="my-2 my-lg-0 nav-link" href="${pageContext.request.contextPath}/jsp/cart.jsp">
                     <img src="${pageContext.request.contextPath}/resources/media/shopping_cart-white-24dp.svg">
                     <!-- Display quantity of products in the cart -->
-                    <span class="badge badge-light">${cart.getItems().size()}</span>
+                    <span class="badge badge-light"><c:out value="${cart.getItems().size()}"/></span>
                 </a>
                 
                 <c:choose>

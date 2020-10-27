@@ -7,18 +7,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%-- Header Section --%>
 <c:import url="/jsp/header.jsp">
     <c:param name="title" value="My Website - Login"/>
 </c:import>
-        
-<c:out value="${account}"/>
+
+<!-- Body Section -->
 <div>
 <div class="container-fluid pb-5 mb-5">
     <div class="row my-3">
         <div class="col-md-6 text-center">
             <h1>Sign in</h1>
             <!-- Display login error -->
-            <p class="text-danger font-italic">${error}</p><br>
+            <p class="text-danger font-italic"><c:out value="${error}"/></p><br>
             <!-- Login form -->
             <form class="form-signin" action="${pageContext.request.contextPath}/login" method="POST">
                 <label for="inputEmail" class="sr-only">Username</label>
@@ -50,7 +51,7 @@
 </div>
 </div>
             
-<%-- Footer --%>
+<%-- Footer Section --%>
 <c:import url="/jsp/footer.jsp"/>
         
            

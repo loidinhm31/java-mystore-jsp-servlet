@@ -10,11 +10,12 @@
 <%-- Save data from search form --%>
 <c:set var="searchKey" value="${param.key}"/>
 
-
+<%-- Header Section --%>
 <c:import url="header.jsp">
     <c:param name="title" value="Search Results"/>
 </c:import>
 
+<!-- Body Section -->
 <div class="container-fluid">
     <div class="row">
         <c:import url="/jsp/list.jsp">
@@ -46,4 +47,5 @@
         </div>
     </c:if>
 </div>
+<%-- Footer Section --%>
 <c:import url="/jsp/footer.jsp"/>

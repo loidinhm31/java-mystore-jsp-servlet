@@ -5,7 +5,9 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-       
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+
+<%-- Header Section --%>
 <c:import url="header.jsp">
     <c:param name="title" value="My Web Shop - Shopping Cart"/>
 </c:import> 
@@ -19,7 +21,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th class="th-sm" scope="col">#</th>
-                    <th class="th-sm" scope="col">Products in cart: ${cart.getItems().size()}</th>
+                    <th class="th-sm" scope="col">Products in cart: <c:out value="${items.size()}"/></th>
                     <th class="th-sm" scope="col">Price</th>
                     <th class="th-sm" scope="col">Quantity</th>
                     <th class="th-sm" scope="col">Amount</th>
@@ -28,29 +30,40 @@
             <tbody>
                 <c:forEach var="product" items="${items}">
                 <tr>
-                    <th scope="row">${items.indexOf(product) + 1}</th>
+                    <th scope="row"><c:out value="${items.indexOf(product) + 1}"/></th>
                     <td>
                         <div class="row">
                             <div class="col-2">
                                 <img class="card-img" src="${product.src}">
                             </div>
                             <div class="col-5">
-                                <p>${product.name}</p>
-                                <p>ID: ${product.id}</p>
+                                <p><c:out value="${product.name}"/></p>
+                                <p>ID: <c:out value="${product.id}"/></p>
                             </div>
                             
                         </div>
                         
                     </td>
-                    <td>${product.price}</td>
-                    <td>${product.quantity}</td>
-                    <td>${product.price * product.quantity}</td>
+                    <%-- Format price --%>
+                    <fmt:formatNumber currencySymbol="$" value="${product.price}" 
+                                          type="currency" var="productPrice"/>
+                    <td><c:out value="${productPrice}"/></td>
+                    <td><c:out value="${product.quantity}"/></td>
+                    
+                    <%-- Format price --%>
+                    <fmt:formatNumber currencySymbol="$" value="${product.price * product.quantity}" 
+                                          type="currency" var="productAmount"/>
+                    <td><c:out value="${productAmount}"/></td>
                 </tr>
                 </c:forEach>
                 <tr>
                     <th scope="row"></th>
-                    <td colspan="3"></td> 
-                    <td>TOTAL: ${cart.getAmount()}</td>
+                    <td colspan="3"></td>
+                    
+                    <%-- Format price --%>
+                    <fmt:formatNumber currencySymbol="$" value="${cart.getAmount()}" 
+                                          type="currency" var="totalAmount"/>
+                    <td>TOTAL: <c:out value="${totalAmount}"/></td>
                 </tr>          
             </tbody>
         </table>
@@ -62,11 +75,11 @@
                 <tbody>
                     <tr>
                         <td>Customer name</td>
-                        <td>${user.name}</td>
+                        <td><c:out value="${user.name}"/></td>
                     </tr>
                     <tr>
                         <td>Customer address</td>
-                        <td>${user.address}</td>
+                        <td><c:out value="${user.address}"/></td>
                     </tr>
                 </tbody>
             </table>
@@ -110,8 +123,5 @@
     </div>             
 </div>        
 
-
-
-            
-            
+<%-- Footer Section --%>                        
 <c:import url="/jsp/footer.jsp"/>

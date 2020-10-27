@@ -5,7 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%-- Header Section --%>
 <c:import url="header.jsp">
     <c:param name="title" value="Search Results"/>
 </c:import>
@@ -24,6 +24,6 @@
             <a href="https://www.linkedin.com/in/loi-dinh-b88906191/">Linked</a> 
     </div>
 </div>
-
+<%-- Footer Section --%>
 <c:import url="/jsp/footer.jsp"/>
 
