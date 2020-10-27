@@ -34,7 +34,9 @@
                     <td>
                         <div class="row">
                             <div class="col-2">
-                                <img class="card-img" src="${product.src}">
+                                <%-- Create URL image for product --%>
+                                <c:url var="productSrc" value="${product.src}"/>
+                                <img class="card-img" src="${productSrc}">
                             </div>
                             <div class="col-5">
                                 <p><c:out value="${product.name}"/></p>

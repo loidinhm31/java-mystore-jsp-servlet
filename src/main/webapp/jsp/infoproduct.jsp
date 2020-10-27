@@ -27,7 +27,9 @@
     <div class="row mx-auto my-5">
         <div class="col-sm-5">
             <div class="card-body">
-                <img class="card-img" src="${product.src}">
+                <%-- Create URL image for product --%>
+                <c:url var="productSrc" value="${product.src}"/>
+                <img class="card-img" src="${productSrc}">
             </div>
         </div>
         <div class="col-sm-4 mx-auto card-body">

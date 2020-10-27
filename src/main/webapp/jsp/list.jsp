@@ -40,7 +40,9 @@
                         <p class="card-text text-danger font-weight-bold"><c:out value="${price}"/></p>
                     </div>
                     <div class="my-3">
-                        <img class="card-img" src="${product.src}">
+                        <%-- Create URL image for product --%>
+                        <c:url var="productSrc" value="${product.src}"/>
+                        <img class="card-img" src="${productSrc}">
                     </div>
                 </a>
             </div>
