@@ -1,50 +1,12 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Oct 16, 2020
-    Author     : Loi Dinh
-*/
-
-* {
-    box-sizing: border-box;
-    font-family: "Arial";
+.leftcolumn h5 {
+	font-size: .9em;
 }
 
-
-/* Responsive layout - when the sss than 800px wide, 
-make the two columns stack on top of each other
-instead of next to each other */
-@media screen and (max-width: 800px) {
-
+.rightcolumn p {
+	font-size: .6em;
 }
 
-/* Responsive layout - when the screen is less than 400px wide,
-make the navigation links stack op top of each other
-instead of next to each other */
-@media screen and (max-width: 400px) {
- 
+.rightcolumn h6 {
+	font-size: .7em;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
