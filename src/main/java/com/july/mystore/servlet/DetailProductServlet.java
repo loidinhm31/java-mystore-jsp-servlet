@@ -44,11 +44,16 @@ public class DetailProductServlet extends HttpServlet {
         
         Product product = productService.findOneByCode(conn, productCode);
         
-        request.setAttribute("PRODUCT", product);
-        
-        //
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/detailProductView.jsp");
-        dispatcher.forward(request, response);
+        if (product != null) {
+        	request.setAttribute("PRODUCT", product);
+        	
+        	//
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/detailProductView.jsp");
+            dispatcher.forward(request, response);
+        } else {
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/homeView.jsp");
+            dispatcher.forward(request, response);
+        }
 
 	}
 

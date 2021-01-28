@@ -69,7 +69,10 @@ public class ActionOnProductInCartServlet extends HttpServlet {
         else if (action != null && action.equalsIgnoreCase("clear")) {
         	Cart currCart = (Cart) session.getAttribute("cart");
         	
-        	currCart.clearCart();
+        	if (currCart != null) {
+        		currCart.clearCart();
+        	}
+        	
         }
         
         

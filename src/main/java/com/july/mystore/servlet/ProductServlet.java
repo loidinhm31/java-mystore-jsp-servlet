@@ -44,11 +44,15 @@ public class ProductServlet extends HttpServlet {
 		
 		List<Product> products = productService.findAll(conn);
 		
-		request.setAttribute("PRODUCTS", products);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/view/productListView.jsp");
-		
-		dispatcher.forward(request, response);
+		if (!products.isEmpty()) {
+			request.setAttribute("PRODUCTS", products);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/view/productListView.jsp");
+
+			dispatcher.forward(request, response);
+		} else {
+			response.sendRedirect(request.getContextPath() + "/product");
+		}
 		
 	}
 
